@@ -1,0 +1,42 @@
+{
+  "plugin_id": "com.kimposoft.actiondesigner",
+  "name": { "zh_CN": "动作设计器", "en_US": "Action Designer" },
+  "version": "1.0.1",
+  "sdk_version": "1.1.0-tp.20",
+  "kimpo_version": ">=1.0.0",
+  "category": "action",
+  "author": { "name": "KimpoSoft Team" },
+  "description": {
+    "zh_CN": "在模板设计时编排事件与动作，通过节点配置和表达式绑定，组织业务操作逻辑。",
+    "en_US": "Design events and actions while designing templates, with node configuration and expression binding."
+  },
+  "entry": { "frontend": "frontend/plugin.umd.js" },
+  "i18n": {
+    "namespace": "com.kimposoft.actiondesigner",
+    "locales": ["zh-CN", "en-US", "ja-JP", "zh-TW"],
+    "path": "frontend/locales",
+    "default_locale": "zh-CN"
+  },
+  "trust_level": "trusted",
+  "dependencies": { "platform": ">=1.0.0", "plugins": [] },
+  "permissions": { "network": [], "storage": false, "exec": false },
+  "lifecycle": { "allow_multiple_config_instances": false, "max_config_instances": 1 },
+  "capabilities": {
+    "frontend": {
+      "global_name": "KimpoPlugins.actionDesigner",
+      "bundle": "frontend/plugin.umd.js",
+      "surfaces": [
+        {
+          "type": "action-designer",
+          "priority": 0,
+          "host_caps": ["platform.interactiveSession", "domain:action-designer", "i18n"]
+        }
+      ],
+      "routes": []
+    }
+  },
+  "schema_compatibility": {
+    "frontend.interactive-session": { "min_version": 1 },
+    "frontend.surface": { "min_version": 1 }
+  }
+}

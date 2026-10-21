@@ -1,0 +1,23 @@
+{
+  "actionDesigner.panel.editorUnsupported": "The editor of this template does not support this action (requires the \"{profile}\" capability, command {command})",
+  "actionDesigner.validate.editorUnsupported": "The editor of this template does not support this action (requires the \"{profile}\" capability, command {command}). Remove the node before saving",
+  "actionDesigner.panel.noActionsError": "Failed to load actions",
+  "actionDesigner.panel.noActionsNotReady": "Action system is not ready yet, please retry later",
+  "actionDesigner.session.opening": "Opening the editing session…",
+  "actionDesigner.session.conflicted": "Another user is editing this template. This view is read-only.",
+  "actionDesigner.session.conflictedNamed": "{name} is editing this template. This view is read-only.",
+  "actionDesigner.session.lost": "The editing session was lost. Changes are frozen and can only be viewed; saving is disabled.",
+  "actionDesigner.session.authEnded": "Your login session ended. Unsaved content was cleared.",
+  "actionDesigner.session.closed": "The editing session is closed.",
+  "actionDesigner.session.readonly": "This session does not allow editing.",
+  "actionDesigner.session.requestEdit": "Request edit access",
+  "actionDesigner.session.adminRelease": "Admin release",
+  "actionDesigner.session.requestSent": "The edit request was sent.",
+  "actionDesigner.session.requestFailed": "Failed to send the edit request.",
+  "actionDesigner.session.adminReleased": "The current editor was requested to release the session.",
+  "actionDesigner.session.adminReleaseFailed": "Failed to release the current editor.",
+  "actionDesigner.events.beforeDelete": "Before delete",
+  "actionDesigner.events.afterDelete": "After delete",
+  "actionDesigner.dialog.blockable": "Blockable",
+  "actionDesigner.dialog.asyncBlockedBeforeSave": "Write actions under the before-save event must run synchronously (failures block saving); async is disabled"
+}

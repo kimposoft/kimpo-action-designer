@@ -1,0 +1,10 @@
+Kimpo Action Designer Plugin
+Copyright 2026 金宝量行（无锡）软件有限公司
+
+This product is licensed under the Apache License, Version 2.0
+(see the LICENSE file in this repository).
+
+frontend/src/designer/MessagePanel.vue reproduces the SVG paths of the
+message type icons (info / success / warning / error) from naive-ui
+(https://github.com/tusen-ai/naive-ui), Copyright (c) 2021 TuSimple,
+licensed under the MIT License.

@@ -1,0 +1,32 @@
+{
+  "name": "kimpo-action-designer-frontend",
+  "version": "1.0.1",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "vue-tsc --noEmit --skipLibCheck",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "naive-ui": "^2.39.0",
+    "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "@kimposoft/expression-editor": "1.1.0-tp.2",
+    "@kimposoft/plugin-sdk": "1.1.0-tp.20"
+  },
+  "devDependencies": {
+    "@kimposoft/ui-kit": "1.1.0-tp.2",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "@vue/test-utils": "^2.4.11",
+    "happy-dom": "^20.11.2",
+    "naive-ui": "^2.39.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.0.0",
+    "vitest": "^2.1.0",
+    "vue": "^3.4.0",
+    "vue-tsc": "^2.0.0"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "actionDesigner.panel.editorUnsupported": "目前範本的編輯器不支援此動作（需要「{profile}」能力，命令 {command}）",
+  "actionDesigner.validate.editorUnsupported": "目前範本的編輯器不支援此動作（需要「{profile}」能力，命令 {command}），請刪除該節點後再儲存",
+  "actionDesigner.panel.noActionsError": "動作清單載入失敗",
+  "actionDesigner.panel.noActionsNotReady": "動作系統尚未就緒，請稍後重試",
+  "actionDesigner.session.opening": "正在建立編輯工作階段…",
+  "actionDesigner.session.conflicted": "此範本正由其他使用者編輯，目前為唯讀。",
+  "actionDesigner.session.conflictedNamed": "{name} 正在編輯此範本，目前為唯讀。",
+  "actionDesigner.session.lost": "編輯工作階段已遺失，修改已凍結；目前內容僅供檢視，無法繼續儲存。",
+  "actionDesigner.session.authEnded": "登入工作階段已結束，未儲存內容已清除。",
+  "actionDesigner.session.closed": "編輯工作階段已關閉。",
+  "actionDesigner.session.readonly": "目前工作階段不允許編輯。",
+  "actionDesigner.session.requestEdit": "申請編輯",
+  "actionDesigner.session.adminRelease": "管理員釋放",
+  "actionDesigner.session.requestSent": "編輯申請已傳送。",
+  "actionDesigner.session.requestFailed": "編輯申請傳送失敗。",
+  "actionDesigner.session.adminReleased": "已要求釋放目前編輯者。",
+  "actionDesigner.session.adminReleaseFailed": "釋放編輯者失敗。",
+  "actionDesigner.events.beforeDelete": "刪除前",
+  "actionDesigner.events.afterDelete": "刪除後",
+  "actionDesigner.dialog.blockable": "可阻斷",
+  "actionDesigner.dialog.asyncBlockedBeforeSave": "儲存前事件下的寫入動作必須同步執行（失敗需阻斷儲存），已停用非同步"
+}

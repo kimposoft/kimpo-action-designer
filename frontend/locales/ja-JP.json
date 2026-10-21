@@ -1,0 +1,23 @@
+{
+  "actionDesigner.panel.editorUnsupported": "このテンプレートのエディターはこのアクションをサポートしていません（「{profile}」機能が必要、コマンド {command}）",
+  "actionDesigner.validate.editorUnsupported": "このテンプレートのエディターはこのアクションをサポートしていません（「{profile}」機能が必要、コマンド {command}）。ノードを削除してから保存してください",
+  "actionDesigner.panel.noActionsError": "アクション一覧の読み込みに失敗しました",
+  "actionDesigner.panel.noActionsNotReady": "アクションシステムはまだ準備中です。しばらくしてから再試行してください",
+  "actionDesigner.session.opening": "編集セッションを開始しています…",
+  "actionDesigner.session.conflicted": "別のユーザーがこのテンプレートを編集中です。現在は読み取り専用です。",
+  "actionDesigner.session.conflictedNamed": "{name} がこのテンプレートを編集中です。現在は読み取り専用です。",
+  "actionDesigner.session.lost": "編集セッションが失われました。変更は凍結され、閲覧のみ可能です。保存はできません。",
+  "actionDesigner.session.authEnded": "ログインセッションが終了しました。未保存の内容は消去されました。",
+  "actionDesigner.session.closed": "編集セッションは終了しました。",
+  "actionDesigner.session.readonly": "このセッションでは編集できません。",
+  "actionDesigner.session.requestEdit": "編集を申請",
+  "actionDesigner.session.adminRelease": "管理者として解放",
+  "actionDesigner.session.requestSent": "編集申請を送信しました。",
+  "actionDesigner.session.requestFailed": "編集申請の送信に失敗しました。",
+  "actionDesigner.session.adminReleased": "現在の編集者にセッション解放を要求しました。",
+  "actionDesigner.session.adminReleaseFailed": "編集者の解放に失敗しました。",
+  "actionDesigner.events.beforeDelete": "削除前",
+  "actionDesigner.events.afterDelete": "削除後",
+  "actionDesigner.dialog.blockable": "ブロック可能",
+  "actionDesigner.dialog.asyncBlockedBeforeSave": "保存前イベント配下の書き込みアクションは同期実行が必須です（失敗時は保存をブロック）。非同期は無効です"
+}

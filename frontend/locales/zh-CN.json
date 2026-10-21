@@ -1,0 +1,23 @@
+{
+  "actionDesigner.panel.editorUnsupported": "当前模板的编辑器不支持该动作（需要「{profile}」能力，命令 {command}）",
+  "actionDesigner.validate.editorUnsupported": "当前模板的编辑器不支持该动作（需要「{profile}」能力，命令 {command}），请删除该节点后再保存",
+  "actionDesigner.panel.noActionsError": "动作清单加载失败",
+  "actionDesigner.panel.noActionsNotReady": "动作系统尚未就绪，请稍后重试",
+  "actionDesigner.session.opening": "正在建立编辑会话…",
+  "actionDesigner.session.conflicted": "该模板正在由其他用户编辑，当前为只读。",
+  "actionDesigner.session.conflictedNamed": "{name} 正在编辑该模板，当前为只读。",
+  "actionDesigner.session.lost": "编辑会话已丢失，已冻结修改；当前内容仅供查看，不能继续保存。",
+  "actionDesigner.session.authEnded": "登录会话已结束，未保存内容已清除。",
+  "actionDesigner.session.closed": "编辑会话已关闭。",
+  "actionDesigner.session.readonly": "当前会话不允许编辑。",
+  "actionDesigner.session.requestEdit": "申请编辑",
+  "actionDesigner.session.adminRelease": "管理员释放",
+  "actionDesigner.session.requestSent": "编辑申请已发送。",
+  "actionDesigner.session.requestFailed": "编辑申请发送失败。",
+  "actionDesigner.session.adminReleased": "已请求释放当前编辑者。",
+  "actionDesigner.session.adminReleaseFailed": "释放编辑者失败。",
+  "actionDesigner.events.beforeDelete": "删除前",
+  "actionDesigner.events.afterDelete": "删除后",
+  "actionDesigner.dialog.blockable": "可阻断",
+  "actionDesigner.dialog.asyncBlockedBeforeSave": "保存前事件下的写入动作必须同步执行（失败需阻断保存），已禁用异步"
+}
