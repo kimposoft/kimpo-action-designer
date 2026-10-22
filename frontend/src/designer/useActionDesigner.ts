@@ -1,4 +1,4 @@
-import { computed, ref, shallowRef } from 'vue';
+import { computed, ref, shallowRef, watch } from 'vue';
 // 动作文档读写、动作注册中心、插件元数据、模板表/字段目录一律经 hostApi 注入。
 import { t as $t } from '../i18n';
 import { resolveLocalized } from './localize';
@@ -21,7 +21,7 @@ import { compileEventsToBundle, openBundleToTrees } from './compile';
 import { resolveOperationKind } from './dataActionKind';
 import { actionEditorGap, type ActionEditorGap } from './editorCapabilities';
 import { readHostError } from './hostError';
-import { actionOutcomes } from './labels';
+import { actionOutcomes, writeV4DocumentOf } from './labels';
 import type { ActionTriggerEventKey, ConditionNodeGuard, MindNode, WorkflowGateStep } from './model';
 import { RECORD_PAGE_EVENT_KEYS, SELECTABLE_TRIGGER_EVENT_KEYS, createActionNode, createConditionNode, createTriggerRoot, newConditionId } from './model';
 
@@ -313,15 +313,62 @@ export function useActionDesigner(options: UseActionDesignerOptions) {
 
   const tableNameMap = computed(() => new Map(tables.value.map(t => [t.data_table_id, t.table_name] as const)));
 
-  /** 数据表显示名：按 data_table_id 查当前模板表目录，查不到回退 id 原样（与 fieldName 同一范式；
-   *  供画布节点指向详情解析取数目标表 / 本报表来源表的表名）。 */
+  /** 数据表显示名：按 data_table_id 查当前模板表目录，再查写节点目标模板的表目录（见下方
+   *  foreignTableNames），都查不到回退 id 原样（与 fieldName 同一范式；供画布节点卡片摘要 / 指向详情
+   *  解析取数目标表、写目标表、本报表来源表的表名）。 */
   function tableName(tableId: string): string {
-    return tableNameMap.value.get(tableId) ?? tableId;
+    return tableNameMap.value.get(tableId) ?? foreignTableNames.value.get(tableId) ?? tableId;
   }
+
+  // 写节点目标表名补齐：新增/修改/删除数据的目标表常在别的模板下，不在当前模板表目录 tables 里，
+  // tableName() 只能回退表 ID（画布节点副标题会显示成「新增 tbl_…」）。这里按当前事件树里
+  // 写节点 target.template_id 收集「非当前模板」的模板 ID，经 SDK 宿主接口 listTemplateTables 逐个拉
+  // 一次表目录并缓存表名；每个模板只请求一次，失败静默（仍回退 ID，不阻断设计器）。
+  const foreignTableNames = shallowRef<Map<string, string>>(new Map());
+  const requestedForeignTemplateIds = new Set<string>();
+
+  /** 收集一棵事件树里写节点目标模板 ID（不含当前模板；job 模式没有当前模板，全收）。 */
+  function collectWriteTargetTemplateIds(node: MindNode | null, out: Set<string>): Set<string> {
+    if (!node) return out;
+    const targetTemplateId = writeV4DocumentOf(node)?.target?.template_id?.trim();
+    const currentTemplateId = options.kind === 'job' ? '' : options.scope.templateId;
+    if (targetTemplateId && targetTemplateId !== currentTemplateId) out.add(targetTemplateId);
+    const bands: MindNode[][] = [node.children ?? [], node.thenChildren ?? [], node.elseChildren ?? [], ...Object.values(node.outcomeChildren ?? {})];
+    for (const band of bands) for (const child of band) collectWriteTargetTemplateIds(child, out);
+    return out;
+  }
+
+  async function loadForeignTableNames(templateIds: string[]): Promise<void> {
+    const appId = currentAppId.value;
+    const pending = templateIds.filter(id => !requestedForeignTemplateIds.has(id));
+    if (!appId || pending.length === 0) return;
+    pending.forEach(id => requestedForeignTemplateIds.add(id));
+    const results = await Promise.all(
+      pending.map(templateId => options.hostApi.listTemplateTables(appId, templateId).catch(() => ({ data: null })))
+    );
+    const next = new Map(foreignTableNames.value);
+    for (const result of results) {
+      for (const table of result.data?.items ?? []) {
+        if (table.data_table_id && table.table_name) next.set(table.data_table_id, table.table_name);
+      }
+    }
+    foreignTableNames.value = next;
+  }
+
 
   // 当前设计所在应用 ID（两种模式各自的 appId 字段名不同，统一成一个只读值，
   // 供 labels.ts crossAppPrefix 判断来源是否「跨应用」）。
   const currentAppId = computed(() => (options.kind === 'job' ? options.appId : options.scope.appId));
+
+  // 写节点目标表名补齐的触发器（见上方 foreignTableNames）：事件树里出现新的目标模板时补拉其表目录。
+  // 放在 currentAppId 之后：immediate 首次执行要读它。
+  watch(
+    () => [...collectWriteTargetTemplateIds(root.value, new Set())].sort().join(','),
+    key => {
+      if (key) void loadForeignTableNames(key.split(','));
+    },
+    { immediate: true }
+  );
 
   const appNameMap = computed(() => new Map(apps.value.map(a => [a.app_id, a.app_name] as const)));
 
